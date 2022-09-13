@@ -6,7 +6,7 @@
   
 ### 모델 리스트  
 --- 
-* XGBoost Regressor  
+* **XGBoost Regressor**  
 최적화된 그래디언트 부스팅 구현 가능한 파이썬 라이브러리
   
   * 원리  
@@ -18,26 +18,19 @@
     
   XGBoost는 훈련시간이 길어서 훈련 시간이 짧으면서 성능이 좋은 LightGBM을 더 많이 사용한다고 함
   
-* LightGBM  
+* **LightGBM**  
 그래디언트 부스팅 발전 → XGBoost → 속도 개선 → LightGBM  
   
   * 원리  
   리프 기준 분할 방식 사용  
   트리의 균형 맞추지 않고 최대 손실값을 갖는 리프 노드를 지속적으로 분할하여 예측 오류 손실 최소화  
     
----
-
- num_leaves: 클수록 정확도는 높아지지만 오버피팅 발생 가능  
-  
- min_data_in_leaf: 클수록 오버피팅 방지  
-  
- max_depth: 위 두개 파라미터와 결합하여 오버피팅 방지  
-  
- objective: 사용하는 데이터셋의 타겟팅 값의 형태에 따라 조정 필요  
-  
- metric: 성능 평가를 어떤 것으로 할 것인지 조정 필요   
- 
- ---
+  * 하이퍼 파라미터  
+  num_leaves: 클수록 정확도는 높아지지만 오버피팅 발생 가능  
+  min_data_in_leaf: 클수록 오버피팅 방지  
+  max_depth: 위 두개 파라미터와 결합하여 오버피팅 방지  
+  objective: 사용하는 데이터셋의 타겟팅 값의 형태에 따라 조정 필요  
+  metric: 성능 평가를 어떤 것으로 할 것인지 조정 필요   
    
   * 성능  
   학습 시간이 짧음 ( 통상 XGBoost의 1.3~1.5배 )  
@@ -45,32 +38,26 @@
   대용량 데이터 처리 가능  
   10,000건 이하 데이터셋에서는 오버피팅 발생 가능  
   
-* Gradient Boosting Regressor  
+* **Gradient Boosting Regressor**  
   
   * 원리  
   여러 개의 약한 학습기를 순차적으로 학습, 예측하면서 잘못 예측한 데이터에 가중치 부여를 통해 오류를 개선해 나가면서 학습하는 방식  
   가중치 업데이터를 경사 하강법을 이용  
   
----   
-
-n_estimator : 트리 개수 지정, 많을수록 성능 높아지지만 수행 시간 오래 걸림   
+  * 하이퍼 파라미터  
+  n_estimator : 트리 개수 지정, 많을수록 성능 높아지지만 수행 시간 오래 걸림   
+  max_features, max_depth, min_samples_leaf, min_samples_split   
+  loss : 경사하강법에서 사용할 비용함수, 기본값 deviance    
+  learning rate : 학습률, 0~1 사이의 값, 작을수록 예측 성능 높아지지만 수행시간 오래 걸림 (⇒ 너무 작게 설정하면 반복이 완료되어도 최소 오류값 찾지 못할 수 있음)  
   
-max_features, max_depth, min_samples_leaf, min_samples_split   
-
-loss : 경사하강법에서 사용할 비용함수, 기본값 deviance    
-
-learning rate : 학습률, 0~1 사이의 값, 작을수록 예측 성능 높아지지만 수행시간 오래 걸림 (⇒ 너무 작게 설정하면 반복이 완료되어도 최소 오류값 찾지 못할 수 있음)  
-  
----
-
-  * 성능
+   * 성능
   일반적으로 랜덤 포레스트보다 예측 성능이 뛰어남  
   수행시간 오래 걸리고, 하이퍼 파라미터 튜닝 노력이 필요  
   대용량 데이터의 경우 학습에 매우 많은 시간이 필요하므로 수행 시간 문제 극복이 중요  
   대안으로 XGBoost 사용  
   
   
-* Stacking  
+* **Stacking**  
 
   * 원리  
   개별적인 여러 알고리즘을 서로 결합해 예측 결과 도출 + 메타 모델로 최종 학습 및 예측  
@@ -80,7 +67,7 @@ learning rate : 학습률, 0~1 사이의 값, 작을수록 예측 성능 높아�
   주로 경진대회에서 마지막 성능 올리기 방법으로 쓰는 기법들 중 하나  
   과적합을 개선하기 위해 CV 세트 기반 스태킹을 사용해야 함
   
-* Random Forest Regressor
+* **Random Forest Regressor**
 배깅(bagging)의 대표적인 알고리즘
   
   * 원리  
@@ -91,7 +78,7 @@ learning rate : 학습률, 0~1 사이의 값, 작을수록 예측 성능 높아�
   데이터의 크기가 커도 계산량이 낮다.  
   Diversity와 Randomness를 확보한 알고리즘이기 때문에 성능이 좋음
   
-* NGB Regressor  
+* **NGB Regressor**  
 Natural Gradient Boost
 
   * 원리  
