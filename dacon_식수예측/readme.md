@@ -89,7 +89,7 @@ Natural Gradient Boost
   
 
 ---
-MAE(Mean Absolute Error, 평균 절대 오차)  
+## MAE(Mean Absolute Error, 평균 절대 오차)  
   
 * 개념 : 모든 절대오차의 평균
 * 특징
@@ -98,7 +98,7 @@ MAE(Mean Absolute Error, 평균 절대 오차)
   3.	모든 오차에 동일한 가중치를 부여함
 --- 
   
-회귀 성능 향상 방법  
+## 회귀 성능 향상 방법  
   
 1.	과적합 방지  
   * 투입하는 feature 제한하기
